@@ -7,8 +7,8 @@ import torch
 
 def main(wandb):
     #Get the hyperparameters from wandb
-    criterion = wandb.config.criterion
-    optimizer = wandb.config.optimizer
+    criterion_wandb = wandb.config.criterion
+    optimizer_wandb = wandb.config.optimizer
     num_epochs = wandb.config.epochs
     lr = wandb.config.lr
     momentum = wandb.config.momentum
@@ -24,17 +24,18 @@ def main(wandb):
     model = CustomNet().to(device)
     
     #initialize the optimizer    
-    if(optimizer == "SGD"):
+    if(optimizer_wandb == "SGD"):
         optimizer = torch.optim.SGD(model.parameters(), lr=lr, momentum=momentum)
     else:
         optimizer = torch.optim.Adam(model.parameters(), lr=lr)
         
     #initialize the criterion
-    if(criterion == "CrossEntropy"):
+    if(criterion_wandb == "CrossEntropy"):
         criterion = torch.nn.CrossEntropyLoss()
     else:
         criterion = torch.nn.NLLLoss()        
         
+    best_acc = 0
     #start training and validation loop
     for epoch in range(1, num_epochs + 1):
         train(epoch, model, train_loader, criterion, optimizer,device,wandb= wandb)
