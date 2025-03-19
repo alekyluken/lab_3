@@ -12,10 +12,10 @@ class AddGaussianNoise(object):
             noise = torch.randn(tensor.size()) * self.std + self.mean
             return tensor + noise
 
-def create_dataloader(dataset, batch_size, shuffle=True):
+def create_dataloader(batch_size, shuffle=True):
     # Function to add Gaussian noise
     
-
+    
     # Define transformations with augmentation
     transform_train = T.Compose([
         T.resize((224, 224)),
