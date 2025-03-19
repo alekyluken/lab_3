@@ -1,4 +1,9 @@
-def train(epoch, model, train_loader, criterion, optimizer, device,wandb):
+import torch
+from torch.utils.data import DataLoader
+from torch.nn import Module
+from torch.optim import Optimizer
+from typing import Union, Any
+def train(epoch: int,model: Module,train_loader: DataLoader,criterion: Union[torch.nn.CrossEntropyLoss, torch.nn.NLLLoss],optimizer: Optimizer,device: torch.device,wandb: any) -> None:    
     model.train()
     running_loss = 0.0
     correct = 0
