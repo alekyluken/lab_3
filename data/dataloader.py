@@ -15,10 +15,10 @@ class AddGaussianNoise(object):
 def create_dataloader(batch_size, shuffle=True):
     # Function to add Gaussian noise
     
-    
+
     # Define transformations with augmentation
     transform_train = T.Compose([
-        T.resize((224, 224)),
+        T.Resize((224, 224)),
         T.RandomHorizontalFlip(p=0.5),  # 50% chance of flipping
         T.RandomRotation(10),  # Rotate randomly by ±10 degrees
         # T.RandomResizedCrop(224, scale=(0.8, 1.0)),  # Random crop
@@ -42,7 +42,7 @@ def create_dataloader(batch_size, shuffle=True):
     tiny_imagenet_dataset_train = ImageFolder(root=root_train, transform=transform_train)
     tiny_imagenet_dataset_val = ImageFolder(root=root_val, transform=transform_val)
     
-    train_loader = torch.utils.data.DataLoader(tiny_imagenet_dataset_train, batch_size=32, shuffle=True)
-    val_loader = torch.utils.data.DataLoader(tiny_imagenet_dataset_val, batch_size=32, shuffle=False)
+    train_loader = torch.utils.data.DataLoader(tiny_imagenet_dataset_train, batch_size=batch_size, shuffle=True)
+    val_loader = torch.utils.data.DataLoader(tiny_imagenet_dataset_val, batch_size=batch_size, shuffle=False)
     
     return train_loader, val_loader
