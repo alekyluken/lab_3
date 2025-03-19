@@ -29,6 +29,12 @@ def main(wandb):
     else:
         optimizer = torch.optim.Adam(model.parameters(), lr=lr)
         
+    #initialize the criterion
+    if(criterion == "CrossEntropy"):
+        criterion = torch.nn.CrossEntropyLoss()
+    else:
+        criterion = torch.nn.NLLLoss()        
+        
     #start training and validation loop
     for epoch in range(1, num_epochs + 1):
         train(epoch, model, train_loader, criterion, optimizer,device,wandb= wandb)
