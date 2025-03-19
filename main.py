@@ -31,7 +31,7 @@ def main(wandb):
         
     #start training and validation loop
     for epoch in range(1, num_epochs + 1):
-        train(epoch, model, train_loader, criterion, optimizer,wandb)
+        train(epoch, model, train_loader, criterion, optimizer,device,wandb= wandb)
 
         # At the end of each training iteration, perform a validation step
         val_accuracy = validate(model, val_loader, criterion,wandb,epoch)

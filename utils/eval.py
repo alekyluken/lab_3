@@ -1,6 +1,6 @@
 import torch
 
-def validate(model, val_loader, criterion,device,wand,epoch):
+def validate(model, val_loader, criterion,device,wandb ,epoch):
     model.eval()
     val_loss = 0
 
@@ -23,5 +23,5 @@ def validate(model, val_loader, criterion,device,wand,epoch):
     val_accuracy = 100. * correct / total
 
     print(f'Validation Loss: {val_loss:.6f} Acc: {val_accuracy:.2f}%')
-    wand.log({"Validation Accuracy":val_accuracy,"Validation Loss":val_loss,"epoch":epoch})
+    wandb.log({"Validation Accuracy":val_accuracy,"Validation Loss":val_loss,"epoch":epoch})
     return val_accuracy
